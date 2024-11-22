@@ -93,3 +93,9 @@ Se desejamos buscar um cliente em específico precisamos utilizar uma outra URL,
     <dataNascimento>2012-12-01</dataNascimento>
 </cliente>
 ```
+
+### Resumindo
+
+Vimos como os protocolos SOAP e REST são utilizados para web services. Vimos também as vantagens de utilizar o protocolo REST em cima de SOAP, bem como uma breve explicação sobre como REST é estruturado. 
+
+
