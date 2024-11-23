@@ -89,4 +89,8 @@ Content-Lenght: 93
    <dataNascimento>2012-01-01</dataNascimento>
 </cliente>
 ```
+## Cabeçalho
+
+>São utilizados para transmitir meta informações a respeito das requisições.
+
 
