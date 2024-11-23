@@ -91,6 +91,78 @@ Content-Lenght: 93
 ```
 ## Cabeçalho
 
->São utilizados para transmitir meta informações a respeito das requisições.
+>São essencialmente um conjunto chave=valor que contém metadados sobre a requisição ou resposta.
 
+Esses metadados informados no cabeçalho permite uma melhor comunicação entre cliente e servidor, uma vez que eles informam uma melhor maneira de como processar as informações. O cabeçalho pode informar uma série de coisas, sendo algumas delas:
+- Qual o formato de resposta que o cliente aceita (JSON, html)
+- O idioma preferido do cliente
+- O tipo de navegador ou aplicação que está fazendo a requisição
+- Detalhes sobre compressão e a persistência da conexão
 
+Segue alguns dos principais cabeçalhos utilizados e seus significados:
+
+### Cabeçalhos de requisição (do cliente para o servidor)
+
+#### 1. Host:
+- Indica o domínio ou o endereço DNS do servidor
+- Ex: `Host: www.exemplo.com`
+
+#### 2. User-Agent:
+- Informa detalhes sobre o cliente (navegador, sistema operacional, etc)
+- Ex: `User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)`
+
+#### 3. Accept:
+- Informa ao servidor quais formatos de resposta são aceitáveis
+- Ex: `Accept: text/html, application/json`
+
+#### 4. Accept-Language:
+- Especifica o idioma preferido para resposta
+- Ex: `Accept-Language: en-US,pt-BR`
+
+#### 5. Accept-Encoding:
+- Indica quais tipos de compressão o cliente aceita para economizar largura de banda
+- Ex: `Accept-Encoding: gzip, deflate`
+
+#### 6. Connection:
+- Define se a conexão deve se manter aberta para outras conexões
+- Ex: `Connection: keep-alive`
+
+### Cabeçalhos de resposta (do servidor para o cliente)
+
+#### 1. Content-Type:
+- Indica o formato do conteúdo da resposta
+- Ex: `Content-Type: text/html, application/json`
+
+#### 2. Content-Lenght:
+- Indica o tamanho do corpo da resposta, em bytes
+- Ex: `Content-Lenght: 128`
+
+#### 3. Cache-Control:
+- Define políticas de cache para o cliente
+- Ex: `Cache-Control: no-cache`
+
+#### 4. Set-Cookie:
+- Utilizado para enviar Cookies para o cliente
+- Ex: `Set-Cookie: sessionId=abc123; HttpOnly`
+
+### Resumindo
+
+Cabeçalhos são metadados que auxiliam na comunicação entre cliente e servidor. Cada requisição e resposta possuem cabeçalhos padronizados, porém podemos também criar cabeçalhos personalizados. Por exemplo, considere a comunicação entre cliente-servidor abaixo:
+
+```
+GET /index.html HTTP/1.1
+Host: www.example.com
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept: text/html
+Accept-Language: en-US
+```
+
+O servidor pode responder com:
+```
+HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 3456
+Cache-Control: max-age=3600
+```
+
+**OBS**: O cabeçalho Host é o único que é obrigatório. 
