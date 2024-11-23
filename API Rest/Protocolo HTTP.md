@@ -273,9 +273,11 @@ Tendo a lista acima como referência, vamos ver quais são os principais erros d
 #### 415 - Unsupported Media Type
 - Utilizado em resposta a clientes que solicitam um tipo de dados que não é suportado - Por exemplo, solicitar JSON quando o único formato de dados suportado é XML.
 
-### 500 - Internal Server Error
+### 5xx
+
+#### 500 - Internal Server Error
 - É uma resposta de erro genérica , utilizada quando nenhuma outra se aplica.
 
-### 503 - Service Unavailable 
+#### 503 - Service Unavailable 
 - Indica que o servidor está atendendo requisições, mas o serviço em questão não está funcionando corretamente. Pode incluir um cabeçalho *Retry-After*, dizendo ao cliente quando ele deveria tentar submeter a requisição novamente 
 
