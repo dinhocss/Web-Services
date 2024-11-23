@@ -71,3 +71,22 @@ A idempotência de um método é relativa às modificações que são realizadas
  |DELETE|Sim|Não|
  |HEAD|Sim|Sim|
  |OPTIONS|Sim|Sim|
+
+### Tipos de passagens de parâmetros
+
+Os métodos HTTP aceitam parâmetros de duas formas, os chamados *query parameters* e *body parameters*. Os query parameters são passados na própria URL da requisição. Por exemplo, considere a seguinte requisição para realizar uma busca no Google: ´HTTP://www.google.com.br/?q=HTTP´. Esta requisição faz com que o Google entenda que uma busca por HTTP está sendo realizada. 
+
+Os query parameters são inseridos a partir do sinal de interrogação e são inseridos via **<chave>=<valor>**. Caso precisemos adicionar mais de um parâmetro, é necessário utilizar & para fazer a separação. Para representarmos espaço numa URL podemos utilizar + ou %20. Há uma limitação em relação ao método GET, pois o mesmo não consegue passar dados estruturados para o servidor. A passagem de parâmetros do método GET se dá via URL. Para passarmos dados estruturados precisamos utilizar o método POST, que passará os dados no corpo do método. Por exemplo, suponhamos que desejamos fornecer dados complexos ao servidor. A maneira de fazer isso é através do método POST, de acordo com o exemplo abaixo:
+
+```
+POST /clientes HTTP/1.1
+Host: www.exemplo.com
+Content-Type: text/html
+Content-Lenght: 93
+
+<cliente>
+   <nome>Alexandre</nome>
+   <dataNascimento>2012-01-01</dataNascimento>
+</cliente>
+```
+
