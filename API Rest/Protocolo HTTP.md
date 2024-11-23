@@ -40,3 +40,34 @@ Content-Type: text/xml
 Content-Lenght: 245
 ```
 ## Métodos HTTP
+
+A versão atual do protocolo HTTP define oito métodos oficiais, sendo eles:
+- GET
+- POST
+- PUT
+- DELETE
+- OPTIONS
+- HEAD
+- TRACE
+- CONNECT
+
+Cada um desses métodos diferem entre si em termos de idempotência, segurança e mecanismo de passagem de parâmetros. Vamos exemplificar cada um deles.
+
+### Idempotência
+
+>Um método HTTP é considerado idempotente se ao executá-lo mais de uma vez ele produzirá o mesmo efeito no servidor que executá-lo apenas uma vez.
+
+A idempotência de um método é relativa às modificações que são realizadas do lado do servidor. Se a mesma requisição provocar alterações no servidor como se fosse uma única requisição, então ela será idempotente. Por exemplo, considere os métodos GET, POST, PUT e DELETE. GET irá retornar o conteúdo requisitado pela URL, portanto, não importa quantas vezes GET for utilizado, ele sempre retornará o mesmo conteúdo, fazendo dele idempotente. Já em relação a POST, há a criação de dados, portanto cada requisição criará algo diferente, fazendo com que POST não seja idempotente. No caso de PUT e DELETE ambos são idempotentes, já que uma mesma requisição PUT ou DELETE produzirá os mesmos resultados.
+
+ ### Segurança
+
+ Em relação a segurança, um método é considerado seguro se não realiza nenhuma modificação nos dados contidos. Em relação a idempotência e segurança temos as seguintes informações:
+ 
+ |Método|Idempotente|Seguro|
+ |---|---|---|
+ |GET|Sim|Sim|
+ |POST|Não|Não|
+ |PUT|Sim|Não|
+ |DELETE|Sim|Não|
+ |HEAD|Sim|Sim|
+ |OPTIONS|Sim|Sim|
