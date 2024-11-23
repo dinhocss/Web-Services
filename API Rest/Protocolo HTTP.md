@@ -200,3 +200,82 @@ O Media Type é composto por duas palavras-chave separadas por '/': `<tipo-princ
 O Media Type é utilizado com os cabeçalhos Accept e Content-Type, pois tratam-se de metadados que informam qual tipo de dado está sendo trabalhado entre cliente e servidor. Se houver parâmetros dentro de um Media Type utilizamos o demarcador ';' para defini-los. Por exemplo, `text/html;charset=utf-8`
 
 **OBS**: Caso o cliente possa receber mais de um tipo de dado é possível definir prioridades em como um dado deve ser enviado ou lido. Por exemplo, `text/html,application/xml;q=0.9,*/*;q=0.8`, que significa que caso não haja um documento de texto html disponível, o cliente tem 90% de prioridade de receber dados do tipo application/xml e 80% de prioridade para receber dados de qualquer tipo.
+
+## Código de Status
+
+Toda solicitação que o cliente faz para o servidor retorna um código de status. Esses códigos são dividos em cinco famílias: 1xx, 2xx, 3xx, 4xx, 5xx, sendo:
+
+- **1xx**: Informacionais
+- **2xx**: Código de sucesso
+- **3xx**: Códigos de redirecionamento
+- **4xx**: Erros causados pelo cliente
+- **5xx**: Erros originados no servidor
+
+Tendo a lista acima como referência, vamos ver quais são os principais erros de cada categoria:
+
+### 2xx
+
+#### 200 - OK
+- Indica que a operação indicada teve sucesso
+
+#### 201 - Created
+- Indica que o recurso desejado foi criado com sucesso. Deve retornar um cabeçalho *Location*, que deve conter a URL onde o recurso recem criado está disponível.
+
+#### 202 - Accepted
+- Indica que a solicitação foi recebida e será processada em outro momento. É tipicamente utilizada em requisições assíncronas, que não serão processadas em tempo real. Por esse motivo, pode retornar um cabeçalho *Location*, que trará uma URL que o cliente pode acessar para verificar se o recurso já está disponível ou não.
+
+#### 204 - No Content
+- Usualmente enviado em resposta a uma requisição PUT, POST ou DELETE, onde o servidor pode recusar-se a enviar o conteúdo.
+
+#### 206 - Partial Content
+- Utilizados em requisições GET parciais, ou seja, que demanda apenas parte do conteúdo amazenado no servidor (caso muito utilizado em servidores de download)
+
+### 3xx
+
+#### 301 - Moved Permanently
+- Significa que o recurso solicitado foi realocado permanentemente. Uma resposta com o código 301 deve conter um cabeçalho *Location*  com a URL completa de onde o recurso está atualmente.
+
+#### 303 - See Other
+- É utilizado quando a requisição é processada, mas o servidor não quer enviar o resultado do processamento. Ao invés disso, o servidor envia a resposta com este código de status e o cabeçalho *Location* informando onde a resposta do processamento está.
+
+#### 304 - Not Modified
+- É utilizado, principalmente, em requisições GET condicionais- quando o cliente deseja ver a resposta apenas se ela tiver sido alterada em relação a uma requisição anterior.
+
+#### 307 - Temporary Redirect
+- Semelhante ao 301, mas indica que o redirecionamento é temporário, e não permanente.
+
+### 4xx
+
+#### 400 - Bad Request
+- É uma resposta genérica para qualquer tipo de erro de processamento cuja responsabilidade é do cliente do serviço.
+
+#### 401 - Unauthorized
+- Utilizado quando o cliente está tentando realizar uma operação sem ter fornecido dados de autenticação (ou a autenticação for inválida).
+
+#### 403 - Forbidden
+- Utilizado quando o cliente está tentando realizar uma operação sem ter a devida autorização.
+
+#### 404 - Not Found
+- Utilizado quando o recurso solicitado não existe.
+
+#### 405 - Method Not Allowed
+- Utilizado quando o método HTTP utilizado não é suportado pela URL. Deve incluir um cabeçalho *Allow* na resposta, contendo a listagem dos métodos suportados (separados por ",").
+
+#### 409 - Conflict
+- Utilizado quando há conflito entre dois recursos. Comumente utilizado em resposta a criações de conteúdo que tenham restrições de dados únicos - por exemplo, criação de um usuário no sistema utilizando um *login* já existente.
+
+#### 410 - Gone
+- Semelhante ao 404, mas indica que um recurso já existiu nesse local.
+
+#### 412 - Precondition Failed
+- Comumente utilizada em resposta a requisições GET condicionais.
+
+#### 415 - Unsupported Media Type
+- Utilizado em resposta a clientes que solicitam um tipo de dados que não é suportado - Por exemplo, solicitar JSON quando o único formato de dados suportado é XML.
+
+### 500 - Internal Server Error
+- É uma resposta de erro genérica , utilizada quando nenhuma outra se aplica.
+
+### 503 - Service Unavailable 
+- Indica que o servidor está atendendo requisições, mas o serviço em questão não está funcionando corretamente. Pode incluir um cabeçalho *Retry-After*, dizendo ao cliente quando ele deveria tentar submeter a requisição novamente 
+
