@@ -166,3 +166,37 @@ Cache-Control: max-age=3600
 ```
 
 **OBS**: O cabeçalho Host é o único que é obrigatório. 
+
+## Media Types
+
+>Fornece uma forma padrão para identificar o formato dos dados que estão sendo enviados ou recebidos.
+
+O Media Type é composto por duas palavras-chave separadas por '/': `<tipo-principal>/<subtipo>`. O tipo-principal indica a categoria geral do dado, por exemplo, imagem, vídeo, texto, etc. Já o subtipo indica o formato exato do tipo. Segue abaixo os principais Media Types:
+
+### 1. text:
+- Representa dados baseados em texto
+- Ex: `text/html, text/plain`
+
+### 2. application:
+- Representa dados estruturados ou arquivos de aplicação
+- Ex: `application/json, application/xml, application/pdf`
+
+### 3. images
+- Representa dados de imagens
+- Ex: `image/png, image/jpeg`
+
+### 4. audio
+- Representa dados de audio
+- Ex: `audio/mpeg, audio/wav`
+
+### 5. video:
+- Representa dados de vídeo
+- Ex: `video/mp4, video/webm`
+
+### 6. multi-part:
+- Representa dados compostos por múltiplas partes (como formulários ou arquivos anexados)
+- Ex: `multi-part:form-data, multi-part:byteranges`
+
+O Media Type é utilizado com os cabeçalhos Accept e Content-Type, pois tratam-se de metadados que informam qual tipo de dado está sendo trabalhado entre cliente e servidor. Se houver parâmetros dentro de um Media Type utilizamos o demarcador ';' para defini-los. Por exemplo, `text/html;charset=utf-8`
+
+**OBS**: Caso o cliente possa receber mais de um tipo de dado é possível definir prioridades em como um dado deve ser enviado ou lido. Por exemplo, `text/html,application/xml;q=0.9,*/*;q=0.8`, que significa que caso não haja um documento de texto html disponível, o cliente tem 90% de prioridade de receber dados do tipo application/xml e 80% de prioridade para receber dados de qualquer tipo.
