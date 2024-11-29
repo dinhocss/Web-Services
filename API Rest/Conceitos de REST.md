@@ -32,3 +32,29 @@ CRUD diz respeito as operações básicas de criação, leitura, atualização e
 * **DELETE(DELETE)**: Remove um recurso específico.
 
 
+## Representações distintas
+
+Um recurso REST pode ser representado de várias maneiras diferentes. O conceito de representação de um recurso indica quais serão os tipos retornados para os dados solicitados. O cabeçalho `Accept` é utilizado para definir qual será o formato da resposta que o cliente irá receber do servidor.
+
+### Explicando como a distinção funciona
+
+Quando realizamos uma solicitação para um recurso (por exemplo, `GET /cervejas`) o mesmo recurso pode ser disponibilizado em vários formatos diferentes. O cabeçalho `Accept` é o responsável por indicar qual será o formato da resposta do recurso. Segue abaixo alguns exemplos de valores que podem ser passados para o cabeçalho `Accept`:
+* application/json (espera-se que a resposta seja em formato JSON)
+* application/xml (espera-se que a resposta seja em formato XML)
+* image/* (espera-se que a resposta seja em formato de qualquer tipo de imagem - JPEG, PNG, etc.)
+
+**OBS**: Podemos adicionar mais de um tipo de mídia no cabeçalho `Accept`, e o servidor vai retornar o primeiro tipo de mídia que ele consegue fornecer. Porém, o primeiro tipo listado é priorizado. 
+
+Exemplo, uma requisição GET para o endereço `/cervejas/1` pode ter o cabeçalho `Accept` fornecido da seguinte maneira:
+
+```
+GET /cervejas/1 HTTP/1.1
+Host: cervejaria.com
+Accept: application/json, application/xml
+```
+
+## Uso correto de status codes
+
+Algo que REST também considera é o uso correto dos status codes HTTP. Status codes são códigos númericos utilizados para informar a resposta de alguma requisição feita ao servidor.  
+
+
