@@ -21,3 +21,14 @@ Para a interação entre URL e cliente ser feita é necessário utilizar os mét
 |POST|Criar|Envia dados ao servidor para criar um novo recurso|`POST /cervejas`(nova)|
 |PUT|Atualizar/substituir completamente|Atualiza os dados de um recurso existente ou cria se ele não existir (idempotente).|`PUT /cervejas/1`(editar)|
 |DELETE|Apagar|Remove o recurso identificado pela URL|`DELETE /cervejas/1`(deletar)|
+
+### CRUD
+
+CRUD diz respeito as operações básicas de criação, leitura, atualização e exclusão de dados em um sistema. Essas operações são básicas em praticamente todo sistema que utiliza banco de dados para manipulação de dados. CRUD serve como base para gerenciamento de dados em aplicativo, e relaciona-se com os métodos HTTP, onde:
+
+* **CREATE(POST)**: Cria um novo recurso.
+* **READ(GET)**: Lê os dados disponíveis de um recurso.
+* **UPDATE(PUT)**: Atualiza um recurso existente.
+* **DELETE(DELETE)**: Remove um recurso específico.
+
+
