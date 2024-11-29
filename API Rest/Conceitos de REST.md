@@ -53,8 +53,57 @@ Host: cervejaria.com
 Accept: application/json, application/xml
 ```
 
-## Uso correto de status codes
+## HATEOAS
 
-Algo que REST também considera é o uso correto dos status codes HTTP. Status codes são códigos númericos utilizados para informar a resposta de alguma requisição feita ao servidor.  
+>Conceito que permite que as interações com a API sejam realizadas de forma dinâmica, através de links dinâmicos.
 
+HATEOAS (Hypermedia As The Engine Of Application State) utiliza links para relacionar diferentes recursos, mudando o estado da aplicação a cada link visitado. Isso significa que ao realizarmos uma requisição para o servidor, a resposta inclui, além dos dados solicitados, links que indicam próximas ações que o usuário pode realizar. Por exemplo, imagine o exemplo da cervejaria. O cliente pode solicitar os dados de um determinado produto e a resposta da requisição pode ser a seguinte:
 
+```
+{
+  "id": 1,
+  "name": "Cerveja IPA",
+  "price": 15.50,
+  "description": "Cerveja artesanal de lúpulo amargo",
+  "links": [
+    {
+      "rel": "self",
+      "href": "/produtos/1"
+    },
+    {
+      "rel": "add_to_cart",
+      "href": "/carrinho/adicionar/1"
+    },
+    {
+      "rel": "reviews",
+      "href": "/produtos/1/reviews"
+    }
+  ]
+}
+```
+* A chave links contém uma lista de links.
+* O link *self* é a URL atual do recurso(o produto em si).
+* O link *add_to_cart* permite adicionar o produto ao carrinho.
+* O link *reviews* leva a página onde o cliente pode adicionar ou ler reviews
+
+### Importância de utilizar os conceitos de HATEOAS
+
+Utilizar links permite que a navegação seja natural, e que o cliente não precise necessariamente saber todas as URLs disponíveis. Isso faz com que haja um desacoplamento, permitindo que o site possa ser percorrido de maneira simplificada. Por exemplo, imagine que cliquemos no link *add_to_cart*, a resposta para essa requisição pode ser:
+
+```
+{
+  "message": "Produto adicionado ao carrinho.",
+  "links": [
+    {
+      "rel": "view_cart",
+      "href": "/carrinho"
+    },
+    {
+      "rel": "checkout",
+      "href": "/checkout"
+    }
+  ]
+}
+```
+
+Note que diferentes links são utilizados conforme determinada requisição é feita. 
