@@ -2,6 +2,8 @@
 
 >Web Services são serviços de comunicação entre sistemas diferentes por meio da web.
 
+A internet é baseada numa arquitetura Cliente-servidor, onde um cliente irá fazer uma requisição para o servidor, e este lhe dará uma resposta seguindo parâmetros definidos no momento da requisição. É baseado nesse contexto que os web services são descritos. 
+
 Esses serviços web permitem que os diferentes sistemas possam lidar com dados de maneira padronizada, ou seja, mesmo que os servidores tenham linguagens diferentes, os dados serão processados da mesma maneira. Esses dados podem ser trocados via arquivos XML ou JSON.
 
 Web services frequentemente utilizam protocolo [HTTP]() para realizar a comunicação entre servidor e cliente, através de métodos POST, GET, UPDATE e DELETE. 
